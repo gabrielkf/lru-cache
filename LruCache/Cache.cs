@@ -11,9 +11,9 @@ public class Cache
         HashTable = new Dictionary<int, string>(capacity);
     }
 
-    public int Capacity { get; }
-    public LinkedList<string> Items { get; }
-    public Dictionary<int, string> HashTable { get; }
+    private int Capacity { get; }
+    private LinkedList<string> Items { get; }
+    private Dictionary<int, string> HashTable { get; }
 
     public string Get(string key)
     {
