@@ -2,26 +2,37 @@ namespace LruCache;
 
 public class Cache
 {
-    private const string Null = "null";
-    
     public Cache(int capacity)
     {
         Capacity = capacity;
-        Items = new LinkedList<string>();
-        HashTable = new Dictionary<int, string>(capacity);
+        LastUsed = new LinkedList<string>();
+        Items = new Dictionary<string, string>(capacity);
     }
 
     private int Capacity { get; }
-    private LinkedList<string> Items { get; }
-    private Dictionary<string, string> HashTable { get; }
+    private LinkedList<string> LastUsed { get; }
+    private Dictionary<string, string> Items { get; }
 
-    public string Get(string key)
+    public string? Get(string key)
     {
-        return HashTable.GetValueOrDefault(key, Null);
+        var value = Items.GetValueOrDefault(key);
+        if (value is null) return null;
+        
+        LastUsed.Remove(key);
+        LastUsed.AddFirst(key);
+
+        return value;
     }
 
     public void Set(string key, string value)
     {
-        HashTable.Add(key, value);
+        if (Items.Count >= Capacity)
+        {
+            Items.Remove(LastUsed.Last!.Value);
+            LastUsed.RemoveLast();
+        }
+
+        Items.Add(key, value);
+        LastUsed.AddFirst(key);
     }
 }
