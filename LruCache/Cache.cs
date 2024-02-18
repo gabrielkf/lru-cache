@@ -20,6 +20,8 @@ public class Cache
         return HashTable.GetValueOrDefault(key, Null);
     }
 
-        return Null;
+    public void Set(string key, string value)
+    {
+        HashTable.Add(key, value);
     }
 }
