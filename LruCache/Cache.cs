@@ -17,10 +17,8 @@ public class Cache
 
     public string Get(string key)
     {
-        if (HashTable.TryGetValue(key.GetHashCode(), out var value))
-        {
-            return value;
-        }
+        return HashTable.GetValueOrDefault(key, Null);
+    }
 
         return Null;
     }
