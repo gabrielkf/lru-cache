@@ -67,9 +67,9 @@ public class LruCacheTests
         var cacheSize = FakeData.Random.Number(10);
         var cache = new Cache(cacheSize);
         
-        cache.Set(firstKey, FakeData.Random.AlphaNumeric(10));
+        cache.Set(firstKey, value);
 
-        for (var i = 1; i < cacheSize * 2; i++)
+        for (var i = 1; i < cacheSize * 2 - 1; i++)
         {
             if (i == cacheSize) cache.Get(firstKey);
             
