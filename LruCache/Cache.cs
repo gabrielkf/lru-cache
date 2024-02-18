@@ -13,7 +13,7 @@ public class Cache
 
     private int Capacity { get; }
     private LinkedList<string> Items { get; }
-    private Dictionary<int, string> HashTable { get; }
+    private Dictionary<string, string> HashTable { get; }
 
     public string Get(string key)
     {
