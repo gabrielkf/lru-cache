@@ -13,10 +13,10 @@ public class Cache
     private LinkedList<string> LastUsed { get; }
     private Dictionary<string, string> Items { get; }
 
-    public string? Get(string key)
+    public object Get(string key)
     {
         var value = Items.GetValueOrDefault(key);
-        if (value is null) return null;
+        if (value is null) return -1;
         
         LastUsed.Remove(key);
         LastUsed.AddFirst(key);

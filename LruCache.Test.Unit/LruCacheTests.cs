@@ -4,10 +4,10 @@ namespace LruCache.Test.Unit;
 
 public class LruCacheTests
 {
-    private static Faker FakeData = new();
+    private static readonly Faker FakeData = new();
     
     [Fact]
-    public void Get_ReturnsNull_WhenKeyNotFound()
+    public void Get_ReturnsNegativeOne_WhenKeyNotFound()
     {
         // Arrange
         var cache = new Cache(3);
@@ -16,7 +16,7 @@ public class LruCacheTests
         var result = cache.Get(FakeData.Random.AlphaNumeric(10));
         
         // Assert
-        result.Should().BeNull();
+        result.Should().Be(-1);
     }
     
     [Fact]
@@ -55,7 +55,7 @@ public class LruCacheTests
         var result = cache.Get(firstKey);
         
         // Assert
-        result.Should().BeNull();
+        result.Should().Be(-1);
     }
     
     [Fact]
