@@ -1,6 +1,6 @@
 ﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
 	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=a0267a9d_002Dd492_002D404d_002Da541_002D82ad05cbc47e/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="LruCacheTests" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
   &lt;TestAncestor&gt;
-    &lt;TestId&gt;xUnit::A8727B35-67E1-40C5-985D-BE9D9189F6AE::net8.0::LruCache.Test.Unit.LruCacheTests&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::A8727B35-67E1-40C5-985D-BE9D9189F6AE::net8.0::LruCache.Test.Unit.LruCacheSetTests.Set_AddsItem_ToTopOfRemovalList&lt;/TestId&gt;
   &lt;/TestAncestor&gt;
 &lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>

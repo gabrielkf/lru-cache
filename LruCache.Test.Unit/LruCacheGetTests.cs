@@ -2,15 +2,35 @@ using Bogus;
 
 namespace LruCache.Test.Unit;
 
-public class LruCacheTests
+public class LruCacheGetTests
 {
     private static readonly Faker FakeData = new();
     
     [Fact]
-    public void Get_ReturnsNegativeOne_WhenKeyNotFound()
+    public void Get_ReturnsNegativeOne_WhenEmpty()
     {
         // Arrange
-        var cache = new Cache(3);
+        var cacheSize = FakeData.Random.Number(10);
+        var cache = new Cache(cacheSize);
+        
+        // Act
+        var result = cache.Get(FakeData.Random.AlphaNumeric(10));
+        
+        // Assert
+        result.Should().Be(-1);
+    }
+    
+    [Fact]
+    public void Get_ReturnsNegativeOne_WhenKeyNotInserted()
+    {
+        // Arrange
+        var cacheSize = FakeData.Random.Number(10);
+        var cache = new Cache(cacheSize);
+        while (cacheSize-- >= 0)
+        {
+            cache.Set(FakeData.Random.AlphaNumeric(10),
+                FakeData.Random.AlphaNumeric(10));
+        }
         
         // Act
         var result = cache.Get(FakeData.Random.AlphaNumeric(10));
@@ -36,30 +56,7 @@ public class LruCacheTests
     }
     
     [Fact]
-    public void Set_RemovesOlderRecord_WhenCacheIsFull()
-    {
-        // Arrange
-        var firstKey = FakeData.Random.AlphaNumeric(10);
-        var cacheSize = FakeData.Random.Number(10);
-        var cache = new Cache(cacheSize);
-        
-        cache.Set(firstKey, FakeData.Random.AlphaNumeric(10));
-
-        for (var i = 1; i <= cacheSize; i++)
-        {
-            cache.Set(FakeData.Random.AlphaNumeric(10),
-                FakeData.Random.AlphaNumeric(10));
-        }
-        
-        // Act
-        var result = cache.Get(firstKey);
-        
-        // Assert
-        result.Should().Be(-1);
-    }
-    
-    [Fact]
-    public void Get_ShouldPrevent_ItemBeingRemoved()
+    public void Get_ShouldMoveItem_ToBottomOfRemovalList()
     {
         // Arrange
         var firstKey = FakeData.Random.AlphaNumeric(10);

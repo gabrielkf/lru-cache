@@ -33,6 +33,6 @@ public class Cache
         }
 
         Items.Add(key, value);
-        LastUsed.AddFirst(key);
+        LastUsed.AddLast(key);
     }
 }
